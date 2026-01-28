@@ -257,6 +257,35 @@
         body {
             height: 100%;
         }
+
+        /* Colonnes avec empilement vertical */
+        .panel.column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Blocs internes */
+        .block {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+        }
+
+        /* Hauteurs */
+        .h60 {
+            height: 60%;
+        }
+
+        .h40 {
+            height: 40%;
+        }
+
+        .h20 {
+            height: 20%;
+        }
     </style>
 </head>
 
@@ -289,44 +318,83 @@
 
     <div class="main-layout">
 
-        <!-- 50 % -->
-        <div class="panel large">
-            <h2 class="menu-title">Médicaments / Protocoles</h2>
+        <!-- ===== COLONNE GAUCHE : 50 % ===== -->
+        <div class="panel large column">
 
-            <ul>
-                <li>
-                    Aérosols sous AA
-                    <a href="aerosols-aa.html">
-                        <button>Voir détails</button>
-                    </a>
-                </li>
+            <div class="block h60">
+                <h2 class="menu-title">Médicaments / Protocoles</h2>
+                <ul>
+                    <li>
+                        Aérosols sous AA
+                        <a href="aerosols-aa.html">
+                            <button>Voir détails</button>
+                        </a>
+                    </li>
+                    <li>
+                        Ajout ATB IV dans la pharmacie des urgences pédiatriques
+                        <a href="atb.html">
+                            <button>Voir détails</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-                <li>
-                    Ajout ATB IV dans la pharmacie des urgences pédiatriques
-                    <a href="atb.html">
-                        <button>Voir détails</button>
-                    </a>
-                </li>
-            </ul>
+            <div class="block h20">
+                <h2 class="menu-title">Hygiène</h2>
+                <ul>
+                    <li>Informations et rappels liés à l’hygiène</li>
+                </ul>
+            </div>
+
+            <div class="block h20">
+                <h2 class="menu-title">Divers</h2>
+                <ul>
+                    <li>Ne plus préparer le dossier bleu (accès via le logiciel)</li>
+                </ul>
+            </div>
+
         </div>
 
-        <!-- 25 % -->
-        <div class="panel small">
-            <h2 class="menu-title">Hygiène</h2>
-            <ul>
-                <li>Informations et rappels liés à l’hygiène</li>
-            </ul>
+        <!-- ===== COLONNE MILIEU : 25 % ===== -->
+        <div class="panel small column">
+
+            <div class="block h60">
+                <h2 class="menu-title">Agenda</h2>
+                <ul>
+                    <li>Réunions, formations, gardes</li>
+                </ul>
+            </div>
+
+            <div class="block h40">
+                <h2 class="menu-title">Évènement</h2>
+                <ul>
+                    <li>Évènements à venir</li>
+                </ul>
+            </div>
+
         </div>
 
-        <!-- 25 % -->
-        <div class="panel small">
-            <h2 class="menu-title">Divers</h2>
-            <ul>
-                <li>Ne plus préparer le dossier bleu (accès via le logiciel)</li>
-            </ul>
+        <!-- ===== COLONNE DROITE : 25 % ===== -->
+        <div class="panel small column">
+
+            <div class="block h60">
+                <h2 class="menu-title">Projets</h2>
+                <ul>
+                    <li>Projets en cours</li>
+                </ul>
+            </div>
+
+            <div class="block h40">
+                <h2 class="menu-title">RH</h2>
+                <ul>
+                    <li>Informations RH</li>
+                </ul>
+            </div>
+
         </div>
 
     </div>
+
 
 
 
