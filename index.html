@@ -286,6 +286,58 @@
         .h20 {
             height: 20%;
         }
+
+
+        /* ===== AGENDA ===== */
+
+        .agenda-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .agenda-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Date à gauche */
+        .agenda-date {
+            min-width: 55px;
+            text-align: center;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            border-radius: 10px;
+            padding: 6px 8px;
+            font-weight: 700;
+        }
+
+        .agenda-date .day {
+            font-size: 20px;
+            line-height: 1;
+            display: block;
+        }
+
+        .agenda-date .month {
+            font-size: 12px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* Texte */
+        .agenda-content {
+            font-size: 15px;
+            font-weight: 600;
+            color: #3b2f32;
+        }
     </style>
 </head>
 
@@ -377,14 +429,51 @@
         <!-- ===== COLONNE DROITE : 25 % ===== -->
         <div class="panel small column">
 
-            <div class="block h60">
+            <div class="block h80">
                 <h2 class="menu-title">Agenda</h2>
-                <ul>
-                    <li>Réunions, formations, gardes</li>
-                </ul>
+
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="day">03</span>
+                        <span class="month">02</span>
+                    </div>
+                    <div class="agenda-content">
+                        Réunion CA PUER
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="day">04</span>
+                        <span class="month">02</span>
+                    </div>
+                    <div class="agenda-content">
+                        Réunion CA AP
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="day">05</span>
+                        <span class="month">03</span>
+                    </div>
+                    <div class="agenda-content">
+                        GRE – La Brise
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span class="day">09</span>
+                        <span class="month">04</span>
+                    </div>
+                    <div class="agenda-content">
+                        CREX
+                    </div>
+                </div>
             </div>
 
-            <div class="block h40">
+            <div class="block h20">
                 <h2 class="menu-title">Évènement</h2>
                 <ul>
                     <li>Évènements à venir</li>
@@ -392,6 +481,7 @@
             </div>
 
         </div>
+
 
     </div>
 
