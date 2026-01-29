@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Info PED – Accès sécurisé</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                linear-gradient(135deg, rgba(59,47,50,0.85), rgba(107,75,82,0.85)),
+                url("img/imgback.jpg") center / cover no-repeat fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-wrapper {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255,255,255,0.92);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+
+        /* ===== PARTIE GAUCHE ===== */
+        .login-info {
+            width: 55%;
+            padding: 50px;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-info h1 {
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .login-info p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .login-info ul {
+            margin-top: 25px;
+            padding-left: 20px;
+        }
+
+        .login-info li {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* ===== PARTIE DROITE ===== */
+        .login-box {
+            width: 45%;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            font-size: 24px;
+            color: #3b2f32;
+            margin-bottom: 10px;
+        }
+
+        .login-box span {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        .login-box button {
+            margin-top: 30px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .error {
+            margin-top: 15px;
+            color: #c0392b;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .login-wrapper {
+                flex-direction: column;
+            }
+            .login-info,
+            .login-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <!-- Zone inspiration -->
+    <div class="login-info">
+        <h1>Info PED</h1>
+        <p>
+            Votre espace d’information interne dédié à la pédiatrie.<br>
+            Centralisez les protocoles, l’agenda, les projets et les informations essentielles du service.
+        </p>
+
+        <ul>
+            <li>✔ Protocoles et médicaments à jour</li>
+            <li>✔ Agenda et évènements du service</li>
+            <li>✔ Projets et informations RH</li>
+            <li>✔ Accès rapide et sécurisé</li>
+        </ul>
+    </div>
+
+    <!-- Zone connexion -->
+    <div class="login-box">
+        <h2>Accès sécurisé</h2>
+        <span>Merci de vous identifier pour continuer</span>
+
+        <input type="text" id="username" placeholder="Nom d'utilisateur">
+        <input type="password" id="password" placeholder="Mot de passe">
+
+        <button onclick="login()">Entrer dans Info PED</button>
+
+        <div class="error" id="error">
+            Identifiant ou mot de passe incorrect
+        </div>
+    </div>
+
+</div>
+
+<script src="users.js"></script>
+<script>
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const userFound = users.find(
+            u => u.username === username && u.password === password
+        );
+
+        if (userFound) {
+            localStorage.setItem("authenticated", "true");
+            window.location.href = "index.html";
+        } else {
+            document.getElementById("error").style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>

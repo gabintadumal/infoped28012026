@@ -339,6 +339,14 @@
             color: #3b2f32;
         }
     </style>
+
+    <script>
+        if (localStorage.getItem("authenticated") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+
+
 </head>
 
 
