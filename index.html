@@ -375,30 +375,11 @@
 
             <div class="block h60">
                 <h2 class="menu-title">Médicaments / Protocoles</h2>
-                <ul>
-                    <li>
-                        • AEROSOL : sous AA si sat &gt; 94% et sous O2 si sat &lt; 94%
-                        <a href="aerosols-aa.html">
-                            <button>📎</button>
-                        </a>
-                    </li>
-                    <li>
-                        • Ajout dotation ATB IV dans la pharmacie des Urgences pédiatriques 
-                        <a href="atb.html">
-                            <button>📎</button>
-                        </a>
-                    </li>
-                    <li>
-                        • Nouveau raccord Nutrisafe pour adapter sur SNG 
-                    </li>
-                    <li>
-                        • 
-                    </li>
-                    <li>
-                        • 
-                    </li>
+                <ul id="medicaments-list">
+                    <li>Chargement…</li>
                 </ul>
             </div>
+
 
             <div class="block h20">
                 <h2 class="menu-title">Hygiène</h2>
@@ -511,7 +492,52 @@
 
         document.getElementById("lastModified").textContent =
             lastModified.toLocaleDateString('fr-FR', options);
+
+
+
+        fetch('medicaments.txt')
+            .then(r => r.text())
+            .then(text => {
+                const ul = document.getElementById('medicaments-list');
+                ul.innerHTML = '';
+
+                text.split('\n').forEach(line => {
+                    if (!line.trim()) return;
+
+                    const li = document.createElement('li');
+                    li.style.display = 'flex';
+                    li.style.justifyContent = 'space-between';
+                    li.style.alignItems = 'center';
+
+                    if (line.includes('||')) {
+                        const [label, link] = line.split('||').map(s => s.trim());
+
+                        const span = document.createElement('span');
+                        span.textContent = '• ' + label;
+
+                        const a = document.createElement('a');
+                        a.href = link;
+
+                        const btn = document.createElement('button');
+                        btn.textContent = '📎';
+
+                        a.appendChild(btn);
+
+                        li.appendChild(span);
+                        li.appendChild(a);
+                    } else {
+                        li.textContent = '• ' + line.trim();
+                    }
+
+                    ul.appendChild(li);
+                });
+            });
+
+
+
+
     </script>
+
 
 
 </body>
