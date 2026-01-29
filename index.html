@@ -19,29 +19,21 @@
     <meta charset="UTF-8">
     <title>Les Info PED – Janvier 2026</title>
     <style>
+        /* ================= LAST UPDATE ================= */
+
         #last-update {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-
-            background: linear-gradient(135deg, #ffffff, #f0f0f0);
-            padding: 14px 22px;
-
-            font-size: 14px;
-            /* plus grand */
+            left: 20px;
+            background: var(--glass-strong);
+            padding: 8px 14px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
             font-weight: 600;
-            color: #3b2f32;
-
-            border-radius: 40px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            z-index: 2000;
-            backdrop-filter: blur(6px);
+            font-size: 12px;
+            backdrop-filter: blur(30px);
         }
+
 
 
         #last-update span {
@@ -59,7 +51,7 @@
             margin: 0;
             padding: 20px;
 
-            background-image: url("img/imgback.jpg");
+            background-image: url("img/imgback3.jpeg");
             background-size: cover;
             /* L’image couvre tout l’écran */
             background-position: center;
@@ -71,10 +63,7 @@
         }
 
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+
 
         .container {
             display: grid;
@@ -355,6 +344,156 @@
             font-weight: 600;
             color: #3b2f32;
         }
+
+
+
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+
+            max-width: 1300px;
+            margin: 0 auto 40px auto;
+
+            color: #ffffff;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, .25);
+        }
+
+        /* Gauche */
+        .title-left {
+            font-size: 70px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-align: left;
+        }
+
+        /* Droite */
+        .title-right {
+            font-size: 50px;
+            font-weight: 600;
+            text-align: right;
+            opacity: 0.9;
+            color: #000000;
+        }
+
+        .block {
+            margin-bottom: 18px;
+            /* espace entre blocs */
+        }
+
+        .block {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 16px;
+            padding: 18px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+            overflow: auto;
+        }
+
+        .panel {
+            background: none;
+            /* ⬅️ SUPPRESSION DU FOND */
+            box-shadow: none;
+            /* ⬅️ SUPPRESSION DE L’OMBRE */
+            outline: none;
+            /* ⬅️ SUPPRESSION DU CONTOUR */
+            padding: 0;
+            /* ⬅️ IMPORTANT */
+        }
+
+        .panel.column {
+            gap: 10px;
+        }
+
+        .block-rh {
+            background: #E0BFD3;
+            /* bleu clair doux */
+        }
+
+        .block-hygiene {
+            background: #ccffff;
+            /* bleu clair doux */
+        }
+
+        .block-medicaments {
+            background: #ff899a;
+            /* bleu clair doux */
+        }
+
+        .alert {
+            display: inline-flex;
+            /* ⬅️ IMPORTANT */
+            align-items: center;
+            gap: 8px;
+            width: auto;
+            /* empêche l’étirement */
+        }
+
+        .alert .text {
+            font-size: 17px;
+        }
+
+        .panel ul li.alert {
+            display: inline;
+            justify-content: initial;
+            align-items: initial;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: none;
+        }
+
+        .panel ul li {
+            display: list-item;
+            list-style-position: inside;
+            padding-left: 0;
+            font-size: 17px;
+            /* taille commune */
+            font-weight: normal;
+        }
+
+        .panel ul li.alert {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-left: 0;
+            /* 🔥 clé */
+            padding-left: 0;
+        }
+
+        .panel ul {
+            padding-left: 20px;
+            /* identique pour tous */
+        }
+
+        .panel ul li.alert {
+            list-style: none;
+            /* on enlève la puce */
+            position: relative;
+            padding-left: 0;
+        }
+
+
+
+        .block-rh li.alert .text {
+            margin-left: 20px;
+            /* espace entre l’icône et le texte */
+        }
+
+
+
+        .block-rh li.alert .icon {
+            position: absolute;
+            left: -35px;
+            /* ⬅️ décale l’icône vers la gauche */
+            width: 48px;
+            text-align: center;
+            font-size: 40px;
+            line-height: 1;
+        }
     </style>
 
 
@@ -384,7 +523,11 @@
 
 
 
-    <h1>Les “Info PED” – Janvier 2026</h1>
+    <h1 class="page-title">
+        <span class="title-left">LES INFOPED</span>
+        <span class="title-right">Janvier 2026</span>
+    </h1>
+
 
 
 
@@ -393,25 +536,25 @@
         <!-- ===== COLONNE GAUCHE : 50 % ===== -->
         <div class="panel large column">
 
-            <div class="block h60">
-                <h2 class="menu-title">Médicaments / Protocoles</h2>
+            <div class="block h60 block-medicaments">
+                <h2 class="menu-title">🔔Médicaments / Protocoles</h2>
                 <ul id="medicaments-list">
                     <li>Chargement…</li>
                 </ul>
             </div>
 
 
-            <div class="block h20">
-                <h2 class="menu-title">Hygiène</h2>
+            <div class="block h20 block-hygiene">
+                <h2 class="menu-title">🦠Hygiène</h2>
                 <ul>
                     <li>Informations et rappels liés à l’hygiène</li>
                 </ul>
             </div>
 
             <div class="block h20">
-                <h2 class="menu-title">Divers</h2>
+                <h2 class="menu-title">💡Divers</h2>
                 <ul>
-                    <li>Ne plus préparer le dossier bleu (accès via le logiciel)</li>
+                    <li>Ne plus préparer le dossier bleu (géré par le secrétériat)</li>
                 </ul>
             </div>
 
@@ -427,11 +570,19 @@
                 </ul>
             </div>
 
-            <div class="block h40">
+            <div class="block h40 block-rh">
                 <h2 class="menu-title">RH</h2>
                 <ul>
                     <li>Informations RH</li>
+
+                    <li class="alert">
+                        <span class="icon">🚨</span>
+                        <span class="text">PDE : Vous pouvez consulter votre planning du mois d'Avril à partir du
+                            03/03</span>
+                    </li>
+
                 </ul>
+
             </div>
 
         </div>
@@ -440,7 +591,7 @@
         <div class="panel small column">
 
             <div class="block h80">
-                <h2 class="menu-title">Agenda</h2>
+                <h2 class="menu-title">📆 Agenda</h2>
 
                 <div class="agenda-item">
                     <div class="agenda-date">
@@ -484,7 +635,7 @@
             </div>
 
             <div class="block h20">
-                <h2 class="menu-title">Évènement</h2>
+                <h2 class="menu-title">🎉Évènements de l'équipe</h2>
                 <ul>
                     <li>Évènements à venir</li>
                 </ul>
@@ -498,7 +649,7 @@
     <button onclick="logout()" style="
     position: fixed;
     top: 20px;
-    left: 20px;
+    right: 20px;
     padding: 8px 16px;
     border-radius: 30px;
     border: none;
