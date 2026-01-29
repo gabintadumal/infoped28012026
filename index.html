@@ -2,6 +2,20 @@
 <html lang="fr">
 
 <head>
+
+    <script>
+        if (localStorage.getItem("authenticated") !== "true") {
+            window.location.replace("login.html");
+        }
+    </script>
+
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+
+
     <meta charset="UTF-8">
     <title>Les Info PED – Janvier 2026</title>
     <style>
@@ -35,6 +49,9 @@
         }
 
 
+        .h80 {
+            height: 80%;
+        }
 
 
         body {
@@ -340,11 +357,6 @@
         }
     </style>
 
-    <script>
-        if (localStorage.getItem("authenticated") !== "true") {
-            window.location.href = "login.html";
-        }
-    </script>
 
 
 </head>
@@ -544,6 +556,10 @@
 
 
 
+    </script>
+
+    <script>
+        document.body.style.display = "block";
     </script>
 
 
