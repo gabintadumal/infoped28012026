@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -474,8 +473,7 @@
         /* Agenda moderne */
         .agenda-item {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            flex-direction: column;
             background: rgba(255, 255, 255, 0.6);
             border-radius: 16px;
             padding: 15px;
@@ -483,12 +481,23 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
+            overflow: hidden;
         }
 
         .agenda-item:hover {
-            transform: translateX(10px);
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.8);
             box-shadow: var(--shadow-md);
+        }
+
+        .agenda-item.expanded {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .agenda-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .agenda-date {
@@ -500,6 +509,7 @@
             padding: 10px;
             font-weight: 700;
             box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
         }
 
         .agenda-date .day {
@@ -517,10 +527,77 @@
             display: block;
         }
 
+        .agenda-main {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .agenda-content {
             font-size: 15px;
             font-weight: 600;
             color: var(--dark);
+        }
+
+        .agenda-arrow {
+            font-size: 20px;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .agenda-item.expanded .agenda-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Détails déroulants */
+        .agenda-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .agenda-item.expanded .agenda-details {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 15px;
+        }
+
+        .agenda-details-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--dark);
+        }
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-icon {
+            font-size: 16px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            min-width: 100px;
+        }
+
+        .detail-value {
+            color: #555;
         }
 
         /* Dernière mise à jour */
@@ -701,43 +778,131 @@
                 <div class="block h80" id="agenda">
                     <h2 class="menu-title">📆 Agenda</h2>
 
-                    <div class="agenda-item">
-                        <div class="agenda-date">
-                            <span class="day">03</span>
-                            <span class="month">FÉV</span>
+                    <div class="agenda-item" onclick="toggleAgenda(this)">
+                        <div class="agenda-header">
+                            <div class="agenda-date">
+                                <span class="day">03</span>
+                                <span class="month">FÉV</span>
+                            </div>
+                            <div class="agenda-main">
+                                <div class="agenda-content">Réunion CA PUER</div>
+                                <div class="agenda-arrow">▶</div>
+                            </div>
                         </div>
-                        <div class="agenda-content">
-                            Réunion CA PUER
+                        <div class="agenda-details">
+                            <div class="agenda-details-content">
+                                <div class="detail-row">
+                                    <span class="detail-icon">🕐</span>
+                                    <span class="detail-label">Heure :</span>
+                                    <span class="detail-value">14h00 - 16h00</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">📍</span>
+                                    <span class="detail-label">Lieu :</span>
+                                    <span class="detail-value">Salle de réunion A, Bâtiment principal</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-label">Participants :</span>
+                                    <span class="detail-value">Dr. Martin, Dr. Dupont, Mme Lefebvre</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="agenda-item">
-                        <div class="agenda-date">
-                            <span class="day">04</span>
-                            <span class="month">FÉV</span>
+                    <div class="agenda-item" onclick="toggleAgenda(this)">
+                        <div class="agenda-header">
+                            <div class="agenda-date">
+                                <span class="day">04</span>
+                                <span class="month">FÉV</span>
+                            </div>
+                            <div class="agenda-main">
+                                <div class="agenda-content">Réunion CA AP</div>
+                                <div class="agenda-arrow">▶</div>
+                            </div>
                         </div>
-                        <div class="agenda-content">
-                            Réunion CA AP
+                        <div class="agenda-details">
+                            <div class="agenda-details-content">
+                                <div class="detail-row">
+                                    <span class="detail-icon">🕐</span>
+                                    <span class="detail-label">Heure :</span>
+                                    <span class="detail-value">10h30 - 12h30</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">📍</span>
+                                    <span class="detail-label">Lieu :</span>
+                                    <span class="detail-value">Amphithéâtre, 2ème étage</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-label">Participants :</span>
+                                    <span class="detail-value">Équipe administrative complète</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="agenda-item">
-                        <div class="agenda-date">
-                            <span class="day">05</span>
-                            <span class="month">MAR</span>
+                    <div class="agenda-item" onclick="toggleAgenda(this)">
+                        <div class="agenda-header">
+                            <div class="agenda-date">
+                                <span class="day">05</span>
+                                <span class="month">MAR</span>
+                            </div>
+                            <div class="agenda-main">
+                                <div class="agenda-content">GRE – La Brise</div>
+                                <div class="agenda-arrow">▶</div>
+                            </div>
                         </div>
-                        <div class="agenda-content">
-                            GRE – La Brise
+                        <div class="agenda-details">
+                            <div class="agenda-details-content">
+                                <div class="detail-row">
+                                    <span class="detail-icon">🕐</span>
+                                    <span class="detail-label">Heure :</span>
+                                    <span class="detail-value">9h00 - 17h00</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">📍</span>
+                                    <span class="detail-label">Lieu :</span>
+                                    <span class="detail-value">Centre La Brise, Vannes</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-label">Participants :</span>
+                                    <span class="detail-value">Groupe de travail GRE</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="agenda-item">
-                        <div class="agenda-date">
-                            <span class="day">09</span>
-                            <span class="month">AVR</span>
+                    <div class="agenda-item" onclick="toggleAgenda(this)">
+                        <div class="agenda-header">
+                            <div class="agenda-date">
+                                <span class="day">09</span>
+                                <span class="month">AVR</span>
+                            </div>
+                            <div class="agenda-main">
+                                <div class="agenda-content">CREX</div>
+                                <div class="agenda-arrow">▶</div>
+                            </div>
                         </div>
-                        <div class="agenda-content">
-                            CREX
+                        <div class="agenda-details">
+                            <div class="agenda-details-content">
+                                <div class="detail-row">
+                                    <span class="detail-icon">🕐</span>
+                                    <span class="detail-label">Heure :</span>
+                                    <span class="detail-value">13h00 - 15h00</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">📍</span>
+                                    <span class="detail-label">Lieu :</span>
+                                    <span class="detail-value">Salle de conférence, Bloc pédiatrique</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-label">Participants :</span>
+                                    <span class="detail-value">Équipe médicale et soignante</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -763,6 +928,11 @@
     </button>
 
     <script>
+        // Fonction pour basculer l'affichage des détails de l'agenda
+        function toggleAgenda(element) {
+            element.classList.toggle('expanded');
+        }
+
         // Déconnexion
         function logout() {
             localStorage.removeItem("authenticated");

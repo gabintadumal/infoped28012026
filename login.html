@@ -401,6 +401,26 @@
             pointer-events: none;
         }
 
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .password-toggle:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .password-toggle:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .login-wrapper {
@@ -493,7 +513,7 @@
                             placeholder="Entrez votre mot de passe"
                             autocomplete="current-password"
                         >
-                        <span class="input-icon">🔒</span>
+                        <span class="password-toggle" id="togglePassword" onclick="togglePasswordVisibility()">👁️</span>
                     </div>
 
                     <button type="submit" class="login-btn">
@@ -510,6 +530,20 @@
 
     <script src="users.js"></script>
     <script>
+        // Fonction pour afficher/masquer le mot de passe
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePassword');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = '👁️‍🗨️';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        }
+
         function login(event) {
             event.preventDefault();
             
