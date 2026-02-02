@@ -14,7 +14,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
@@ -35,14 +37,29 @@
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
         }
 
         @keyframes fadeInScale {
@@ -50,6 +67,7 @@
                 opacity: 0;
                 transform: scale(0.9);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -61,6 +79,7 @@
                 opacity: 0;
                 transform: translateX(-100px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -72,6 +91,7 @@
                 opacity: 0;
                 transform: translateX(100px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -79,28 +99,57 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
         }
 
         body {
             font-family: 'DM Sans', sans-serif;
             margin: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            background: url("img/imgback3.jpeg") center / cover no-repeat fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        /* Overlay sombre sur l'image de fond */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.5);
+            z-index: 0;
         }
 
         /* Particules flottantes */
@@ -116,7 +165,7 @@
 
         .particle {
             position: absolute;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: float 12s ease-in-out infinite;
         }
@@ -169,137 +218,156 @@
             animation-delay: 5s;
         }
 
-        /* Container principal */
+        /* Logo en haut à gauche */
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo img {
+            height: 70px;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Menu de navigation en haut */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(59, 47, 50, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 60px;
+            padding: 10px 25px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .top-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-nav li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .top-nav li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Container principal centré */
         .login-container {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 1100px;
-            margin: 0 20px;
-            animation: fadeInScale 0.8s ease-out;
-        }
-
-        .login-wrapper {
+            max-width: 1400px;
+            margin: 120px auto 80px;
+            padding: 0 40px;
             display: flex;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--glass-border);
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            animation: fadeInScale 1s ease-out 0.5s backwards;
         }
 
-        /* Partie gauche - Information */
-        .login-info {
-            width: 55%;
-            padding: 60px 50px;
-            background: linear-gradient(135deg, #FF6B9D, #C94A6D);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            animation: slideInFromLeft 0.8s ease-out 0.2s backwards;
+        /* Partie gauche - Texte */
+        .login-left {
+            flex: 1;
+            text-align: left;
+            max-width: 750px;
         }
 
-        .login-info::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .login-info-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .login-info h1 {
+        /* Titre principal */
+        .main-title {
             font-family: 'Sora', sans-serif;
-            font-size: 48px;
+            font-size: clamp(50px, 8vw, 100px);
             font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            color: white;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+            text-shadow: 0 8px px rgba(0, 0, 0, 0.5);
+            line-height: 1;
         }
 
-        .login-info p {
-            font-size: 17px;
-            line-height: 1.7;
-            opacity: 0.95;
-            margin-bottom: 30px;
+        /* Sous-titre */
+        .subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 15px;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.5;
         }
 
-        .features-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .features-list li {
-            padding: 12px 0;
-            font-size: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            opacity: 0;
-            animation: slideInFromLeft 0.5s ease-out forwards;
-        }
-
-        .features-list li:nth-child(1) { animation-delay: 0.4s; }
-        .features-list li:nth-child(2) { animation-delay: 0.5s; }
-        .features-list li:nth-child(3) { animation-delay: 0.6s; }
-        .features-list li:nth-child(4) { animation-delay: 0.7s; }
-
-        .features-list li::before {
-            content: '✓';
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 18px;
+        /* Message d'accueil */
+        .welcome-message {
+            font-size: clamp(14px, 2vw, 18px);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Partie droite - Formulaire */
+        .login-right {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        /* Boîte de connexion */
         .login-box {
-            width: 45%;
-            padding: 60px 50px;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            animation: slideInFromRight 0.8s ease-out 0.2s backwards;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 18px;
+            padding: 22px 26px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .login-box h2 {
             font-family: 'Sora', sans-serif;
-            font-size: 32px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             text-align: center;
-        }
-
-        .login-box .subtitle {
-            font-size: 15px;
-            color: #666;
-            text-align: center;
-            margin-bottom: 40px;
         }
 
         .form-group {
             margin-bottom: 25px;
             position: relative;
+            text-align: left;
         }
 
         .form-group label {
@@ -330,12 +398,12 @@
 
         .login-btn {
             width: 100%;
-            padding: 18px;
+            padding: 14px;
             border: none;
-            border-radius: 14px;
+            border-radius: 50px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 700;
             font-family: 'Sora', sans-serif;
             cursor: pointer;
@@ -343,6 +411,7 @@
             box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
             position: relative;
             overflow: hidden;
+            margin-top: 10px;
         }
 
         .login-btn::before {
@@ -386,21 +455,7 @@
             display: block;
         }
 
-        /* Icône dans les inputs */
-        .form-group {
-            position: relative;
-        }
-
-        .input-icon {
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            color: #999;
-            pointer-events: none;
-        }
-
+        /* Icône mot de passe */
         .password-toggle {
             position: absolute;
             right: 18px;
@@ -421,37 +476,141 @@
             transform: translateY(-50%) scale(0.95);
         }
 
+        .learn-more-btn {
+            background: rgba(255, 107, 157, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 14px 50px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .learn-more-btn:hover {
+            background: rgba(255, 107, 157, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            animation: fadeIn 1.5s ease-out 1s backwards;
+        }
+
+        .footer img {
+            height: 40px;
+            opacity: 0.8;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+        }
+
         /* Responsive */
-        @media (max-width: 900px) {
-            .login-wrapper {
+        @media (max-width: 1024px) {
+            .login-container {
                 flex-direction: column;
+                margin: 100px auto 100px;
+                padding: 0 30px;
+                gap: 40px;
             }
 
-            .login-info,
+            .login-left {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .login-right {
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px 0 100px;
+            }
+
+            .top-nav {
+                top: 10px;
+                padding: 8px 15px;
+            }
+
+            .top-nav li a {
+                font-size: 10px;
+                padding: 6px 12px;
+            }
+
+            .logo {
+                top: 10px;
+                left: 10px;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            .login-container {
+                margin: 80px auto 80px;
+                padding: 0 20px;
+                gap: 30px;
+            }
+
             .login-box {
-                width: 100%;
+                padding: 30px 25px;
             }
 
-            .login-info {
-                padding: 40px 30px;
+            .main-title {
+                font-size: 50px;
+                margin-bottom: 15px;
             }
 
-            .login-info h1 {
-                font-size: 36px;
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 10px;
             }
 
-            .login-box {
-                padding: 40px 30px;
+            .welcome-message {
+                font-size: 14px;
+            }
+
+            .welcome-list {
+                { margin-left: 100px; }
+            }
+
+            .learn-more {
+                bottom: 25px;
+            }
+
+            .learn-more-btn {
+                padding: 12px 35px;
+                font-size: 14px;
             }
         }
 
         @media (max-width: 500px) {
-            .login-info h1 {
-                font-size: 28px;
+            .top-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 3px;
+            }
+
+            .main-title {
+                font-size: 40px;
             }
 
             .login-box h2 {
-                font-size: 24px;
+                font-size: 22px;
+            }
+
+            .login-container {
+                padding: 0 15px;
             }
         }
     </style>
@@ -468,56 +627,51 @@
         <div class="particle"></div>
     </div>
 
+    <!-- Logo en haut à gauche -->
+    <div class="logo">
+        <img src="img/logo.png" alt="Brocéliande Atlantique" onerror="this.style.display='none'">
+    </div>
+
+    <!-- Container principal avec disposition gauche-droite -->
     <div class="login-container">
-        <div class="login-wrapper">
-            <!-- Partie gauche - Information -->
-            <div class="login-info">
-                <div class="login-info-content">
-                    <h1>Info PED</h1>
-                    <p>
-                        Votre espace d'information interne dédié à la pédiatrie.<br>
-                        Centralisez les protocoles, l'agenda, les projets et les informations essentielles du service.
-                    </p>
+        <!-- Partie gauche - Texte -->
+        <div class="login-left">
+            <h1 class="main-title">LES INFOPED</h1>
+            <p class="subtitle">un petit site où s'informer des news du service de pédiatrie et des urgences
+                pédiatriques</p>
+            <p class="welcome-list">A l'attention de l'ensemble de l'équipe médicale et paramédicale</p>
+            <p class="welcome-list"><br></p>
+            <p class="welcome-list"> 💊 Protocoles et médicaments à jour</p>
+            <p class="welcome-list"><br></p>
+            <p class="welcome-list">💡 Projets et informations RH</p>
+            <p class="welcome-list"><br></p>
+            <p class="welcome-list">📆 Agenda et évènements du service</p>
+            <p class="welcome-list"><br></p>
+            <p class="welcome-list">🔒 Accès rapide et sécurisé</p>
+        </div>
 
-                    <ul class="features-list">
-                        <li>Protocoles et médicaments à jour</li>
-                        <li>Agenda et évènements du service</li>
-                        <li>Projets et informations RH</li>
-                        <li>Accès rapide et sécurisé</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Partie droite - Formulaire -->
+        <!-- Partie droite - Formulaire -->
+        <div class="login-right">
             <div class="login-box">
-                <h2>Bienvenue ! 👋</h2>
-                <p class="subtitle">Merci de vous identifier pour continuer</p>
+                <h2>👋 Bienvenue</h2>
 
                 <form onsubmit="login(event)">
                     <div class="form-group">
                         <label for="username">Nom d'utilisateur</label>
-                        <input 
-                            type="text" 
-                            id="username" 
-                            placeholder="Entrez votre nom d'utilisateur"
-                            autocomplete="username"
-                        >
-                        <span class="input-icon">👤</span>
+                        <input type="text" id="username" placeholder="Entrez votre nom d'utilisateur"
+                            autocomplete="username">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            placeholder="Entrez votre mot de passe"
-                            autocomplete="current-password"
-                        >
-                        <span class="password-toggle" id="togglePassword" onclick="togglePasswordVisibility()">👁️</span>
+                        <input type="password" id="password" placeholder="Entrez votre mot de passe"
+                            autocomplete="current-password">
+                        <span class="password-toggle" id="togglePassword"
+                            onclick="togglePasswordVisibility()">👁️</span>
                     </div>
 
                     <button type="submit" class="login-btn">
-                        ✨ Accéder à Info PED
+                        ✨ Se connecter
                     </button>
 
                     <div class="error" id="error">
@@ -528,13 +682,18 @@
         </div>
     </div>
 
+    <!-- Footer avec logo Genially -->
+    <div class="footer">
+        <img src="img/genially-logo.png" alt="Powered by Genially" onerror="this.style.display='none'">
+    </div>
+
     <script src="users.js"></script>
     <script>
         // Fonction pour afficher/masquer le mot de passe
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.getElementById('togglePassword');
-            
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 toggleIcon.textContent = '👁️‍🗨️';
@@ -546,7 +705,7 @@
 
         function login(event) {
             event.preventDefault();
-            
+
             const username = document.getElementById("username").value.trim();
             const password = document.getElementById("password").value.trim();
             const errorDiv = document.getElementById("error");
@@ -576,11 +735,11 @@
             } else {
                 errorDiv.textContent = "❌ Identifiant ou mot de passe incorrect";
                 errorDiv.classList.add('show');
-                
+
                 // Animation de shake sur les inputs
                 document.getElementById('username').style.animation = 'shake 0.5s';
                 document.getElementById('password').style.animation = 'shake 0.5s';
-                
+
                 setTimeout(() => {
                     document.getElementById('username').style.animation = '';
                     document.getElementById('password').style.animation = '';
